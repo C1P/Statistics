@@ -14,19 +14,7 @@ a<-example1_1
 b<-example2_1
 c<-example2_2
 d<-example2_3
-table(a$姓名)  ##看频数
-prop.table(a$姓名) ##看频数分布表
-b1<-table(b)
-addmargins(b1) ##连列表
-mean(c)
-median(c) ##中位数
-quantile(c,probs=c(0.25,0.75),type=6) ##看分位数 根据probs输入
-summary(c)
-min(c)
-max(c)
-var(c) #方差！
-sd(c) #标准差
-cv<-sd(c)/mean(c)##变异系数 表明离散水平的 对比好用
+
 
 ##累计百分比
 library(plyr)
