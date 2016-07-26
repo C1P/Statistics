@@ -1,0 +1,52 @@
+---
+title: "Untitled"
+author: "c1p"
+output: word_document
+---
+
+```{r}
+setwd("d:/DATA")
+load("d:/data/example/ch1/example1_1.RData")
+load("d:/data/example/ch2/example2_1.RData")
+load("d:/data/example/ch2/example2_2.RData")
+load("d:/data/example/ch2/example2_3.RData")
+a<-example1_1
+b<-example2_1
+c<-example2_2
+d<-example2_3
+table(a$姓名)  ##看频数
+prop.table(a$姓名) ##看频数分布表
+b1<-table(b)
+addmargins(b1) ##连列表
+mean(c)
+median(c) ##中位数
+quantile(c,probs=c(0.25,0.75),type=6) ##看分位数 根据probs输入
+summary(c)
+min(c)
+max(c)
+var(c) #方差！
+sd(c) #标准差
+cv<-sd(c)/mean(c)##变异系数 表明离散水平的 对比好用
+
+##累计百分比
+library(plyr)
+View(c)
+count<-table(round_any(c,10)) ## 对数据以10为单位分组(自动排序)
+count1<-as.numeric(count)
+pcount<-prop.table(count1)
+cumsump<-cumsum(pcount) ##cumsum 是累计计算函数
+name<-paste(seq(160,270,by=10),sep="-",seq(170,280,by=10))
+t<-data.frame("频数"=count1,"百分比"=pcount,"累计百分比"=cumsump,row.names=name)
+round(t,4)
+
+##分布
+library(agricolae)
+skewness(c) ##偏态系数　０是对称分布　大于小于１，－１都是严重偏态
+kurtosis(c) ##峰度系数 标准正太峰度为0
+
+library(pastecs)
+round(stat.desc(d),4) ##
+library(psych)
+describe(d)
+```
+
